@@ -1,8 +1,9 @@
-package com.lohika.rialab.todoshare.dao;
+package ua.com.mcgray.springvaadin.dao;
 
 import java.util.List;
 
-import com.lohika.rialab.todoshare.domain.Person;
+import ua.com.mcgray.springvaadin.domain.Person;
+
 
 public interface PersonDao {
 

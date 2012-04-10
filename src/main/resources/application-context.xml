@@ -17,13 +17,13 @@
 
 	<import resource="persistence-context.xml" />
 
-	<context:component-scan base-package="com.lohika.rialab" />
+	<context:component-scan base-package="ua.com.mcgray" />
 	
 	<bean class="com.lohika.rialab.todoshare.service.PersistenceService" scope="prototype"/>
 
-<!-- 	<bean -->
-<!-- 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /> -->
-<!-- 	<bean -->
-<!-- 		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" /> -->
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 
 </beans>

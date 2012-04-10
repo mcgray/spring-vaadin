@@ -1,4 +1,6 @@
-package com.lohika.rialab.todoshare.dao;
+package ua.com.mcgray.springvaadin.dao;
+
+import static org.fest.assertions.Assertions.assertThat;
 
 import javax.annotation.Resource;
 
@@ -9,7 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lohika.rialab.todoshare.domain.Person;
+import ua.com.mcgray.springvaadin.dao.PersonDao;
+import ua.com.mcgray.springvaadin.domain.Person;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/test-context.xml")
@@ -35,6 +39,16 @@ public class PersonDaoTest {
 	@Test
 	public void saveTest() {
 		personDaoImpl.save(testPerson);
+	}
+
+	@Test
+	public void loadTest() {
+		Person person = personDaoImpl.find(2l);
+		assertThat(person).isNotNull();
+		assertThat(person.getFirstName()).isEqualTo("Marc");
+		assertThat(person.getBoss()).isNotNull();
+		assertThat(person.getBoss().getId()).isEqualTo(1l);
+
 	}
 
 }

@@ -16,18 +16,18 @@
 
 	<context:annotation-config />
 
-<!-- 	<bean class="org.springframework.jdbc.datasource.init.DataSourceInitializer" depends-on="entityManagerFactory"> -->
-<!-- 		<property name="databasePopulator" ref="resourceDatabasePopulator"/> -->
-<!-- 		<property name="dataSource" ref="dataSource"/> -->
-<!-- 	</bean> -->
+	<bean class="org.springframework.jdbc.datasource.init.DataSourceInitializer" depends-on="entityManagerFactory">
+		<property name="databasePopulator" ref="resourceDatabasePopulator"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 
-<!-- 	<bean id="resourceDatabasePopulator" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator"> -->
-<!-- 		<property name="scripts"> -->
-<!-- 			<array> -->
-<!-- 				<value>classpath:sql/data.sql</value> -->
-<!-- 			</array> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="resourceDatabasePopulator" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+		<property name="scripts">
+			<array>
+				<value>classpath:sql/data.sql</value>
+			</array>
+		</property>
+	</bean>
 
 	<jdbc:embedded-database id="dataSource" type="H2" />
 

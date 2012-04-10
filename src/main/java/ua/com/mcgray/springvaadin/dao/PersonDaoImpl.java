@@ -1,8 +1,9 @@
-package com.lohika.rialab.todoshare.dao;
+package ua.com.mcgray.springvaadin.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.lohika.rialab.todoshare.domain.Person;
+import ua.com.mcgray.springvaadin.domain.Person;
+
 
 @Repository
 public class PersonDaoImpl extends AbstractDao<Person, Long> implements PersonDao {

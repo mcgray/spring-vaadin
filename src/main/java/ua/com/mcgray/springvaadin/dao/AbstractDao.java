@@ -1,4 +1,4 @@
-package com.lohika.rialab.todoshare.dao;
+package ua.com.mcgray.springvaadin.dao;
 
 import java.io.Serializable;
 import java.util.Collections;

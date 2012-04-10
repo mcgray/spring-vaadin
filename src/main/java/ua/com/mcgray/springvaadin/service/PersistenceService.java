@@ -1,4 +1,4 @@
-package com.lohika.rialab.todoshare.service;
+package ua.com.mcgray.springvaadin.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

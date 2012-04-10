@@ -6,7 +6,7 @@
 
 	<persistence-unit name="addressbook">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>		
-		<class>com.lohika.rialab.todoshare.domain.Person</class>
+		<class>ua.com.mcgray.springvaadin.domain.Person</class>
 	</persistence-unit>
 
 </persistence>

@@ -1,7 +1,12 @@
-package com.lohika.rialab.todoshare;
+package ua.com.mcgray.springvaadin;
 
-import com.lohika.rialab.todoshare.domain.Person;
-import com.lohika.rialab.todoshare.service.PersistenceService;
+import javax.persistence.EntityManagerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+
+import ua.com.mcgray.springvaadin.domain.Person;
+
 import com.vaadin.Application;
 import com.vaadin.addon.beanvalidation.BeanValidationForm;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
@@ -21,9 +26,11 @@ import com.vaadin.ui.Window;
  * The Application's "main" class
  */
 @SuppressWarnings("serial")
+@Configurable(preConstruction = true)
 public class MyVaadinApplication extends Application {
 
-	private final PersistenceService persistenceService = new PersistenceService();
+	@Autowired
+	private EntityManagerFactory entityManagerFactory;
 
 	@Override
 	public void init() {
@@ -33,7 +40,7 @@ public class MyVaadinApplication extends Application {
 
 		VerticalSplitPanel verticalSplitPanel = new VerticalSplitPanel();
 		w.setContent(verticalSplitPanel);
-		final Table table = new Table("Persons", JPAContainerFactory.make(Person.class, persistenceService.getEntityManager()));
+		final Table table = new Table("Persons", JPAContainerFactory.make(Person.class, entityManagerFactory.createEntityManager()));
 		table.setSizeFull();
 		table.setVisibleColumns(new Object[] { "firstName", "lastName", "boss" });
 		verticalSplitPanel.setSplitPosition(30);
@@ -45,6 +52,7 @@ public class MyVaadinApplication extends Application {
 		form.setWriteThrough(false);
 		// form.getField("boss").setReadOnly(true);
 		form.getFooter().addComponent(new Button("Save", new Button.ClickListener() {
+			@Override
 			public void buttonClick(ClickEvent event) {
 				form.commit();
 			}
@@ -57,6 +65,7 @@ public class MyVaadinApplication extends Application {
 		table.setSelectable(true);
 		table.setImmediate(true);
 		table.addListener(new Property.ValueChangeListener() {
+			@Override
 			public void valueChange(ValueChangeEvent event) {
 				if (event.getProperty().getValue() == null) {
 					form.setValue(null);
@@ -73,10 +82,12 @@ public class MyVaadinApplication extends Application {
 			private final Action REMOVE = new Action("Remove");
 			private final Action[] actions = new Action[] { NEW, REMOVE };
 
+			@Override
 			public Action[] getActions(Object target, Object sender) {
 				return actions;
 			}
 
+			@Override
 			public void handleAction(Action action, Object sender, Object target) {
 				if (action == NEW) {
 					Object newItemId = table.addItem();
@@ -90,33 +101,5 @@ public class MyVaadinApplication extends Application {
 
 		setMainWindow(w);
 	}
-
-	// static {
-	// // create two Person's as test data
-	// EntityManager em = entityManagerFactory.createEntityManager();
-	//
-	// em.getTransaction().begin();
-	// Person boss = new Person();
-	// boss.setFirstName("John");
-	// boss.setLastName("Bigboss");
-	// boss.setCity("Turku");
-	// boss.setPhoneNumber("+358 02 555 221");
-	// boss.setZipCode("20200");
-	// boss.setStreet("Ruukinkatu 2-4");
-	// em.persist(boss);
-	//
-	// Person p = new Person();
-	// p.setFirstName("Marc");
-	// p.setLastName("Hardworker");
-	// p.setCity("Turku");
-	// p.setPhoneNumber("+358 02 555 222");
-	// p.setZipCode("20200");
-	// p.setStreet("Ruukinkatu 2-4");
-	// p.setBoss(boss);
-	// em.persist(p);
-	//
-	// em.getTransaction().commit();
-	//
-	// }
 
 }
