@@ -25,7 +25,7 @@
 		<init-param>
 			<description>Vaadin application class to start</description>
 			<param-name>application</param-name>
-			<param-value>com.lohika.rialab.todoshare.MyVaadinApplication</param-value>
+			<param-value>ua.com.mcgray.springvaadin.MyVaadinApplication</param-value>
 		</init-param>
 		<!-- Uncomment next init-param if widgetset is needed -->
 		<!-- <init-param> <description>Application widgetset</description> <param-name>widgetset</param-name> 

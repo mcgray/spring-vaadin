@@ -19,7 +19,7 @@
 
 	<context:component-scan base-package="ua.com.mcgray" />
 	
-	<bean class="com.lohika.rialab.todoshare.service.PersistenceService" scope="prototype"/>
+	<bean class="ua.com.mcgray.springvaadin.service.PersistenceService" scope="prototype"/>
 
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
